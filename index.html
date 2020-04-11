@@ -1,13 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/memegen-main.css">
     <title>memegen - Yotam</title>
 </head>
-<body>
 
-    <h1>Hello World</h1>
-    
+<body onload="init()">
+
+    <header class="main-header flex justify-center align-center">
+        <div class="header container flex justify-center align-center space-between">
+            <div class="logo"></div>
+
+            <ul class="upper-nav flex space-between clean-list">
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Memes</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="img-page">
+
+        <div class="gallery flex column align-center">
+
+            <div class="img-nav flex justify-center align-center space-between">
+                <input type="text" class="search-img">
+                <div class="word-tags"></div>
+            </div>
+
+            <table class="img-table">
+                <tbody class="tbody flex wrap">
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
+
+    <main class="container isHidden">
+        <section class="canvas-container flex align-center justify-center">
+            <canvas class="main-canvas" id="main-canvas" width="600" height="600"></canvas>
+        </section>
+
+        <section class="main-controller flex align-center">
+            <div class="control-box flex column align-center space-between">
+
+                <input type="text" class="meme-text" name="meme-text" oninput="onTypeText()">
+
+                <ul class="input-control flex align-center justify-center space-between clean-list">
+                    <li><a href="#">🠭🠯</a></li>
+                    <li><a href="#">➕</a></li>
+                    <li><a href="#">🗑</a></li>
+                </ul>
+
+                <ul class="text-control flex align-center wrap justify-center space-between clean-list">
+                    <li><a href="#">🗚</a></li>
+                    <li><a href="#">🗛</a></li>
+                    <li><a href="#">LTR</a></li>
+                    <li><a href="#">CENTER</a></li>
+                    <li><a href="#">RTL</a></li>
+                </ul>
+
+                <ul class="text-style flex align-center space-between clean-list">
+                    <li><a href="#"><input type="color">stroke color</a></li>
+                    <li><a href="#"><input type="color">font color</a></li>
+                    <li><a href="#"><select name="choose-font" id="choose-font"></select></a></li>
+                </ul>
+
+                <ul class="save-share-control flex space-between clean-list">
+                    <li><a href="#">share</a></li>
+                    <li><a href="#">save</a></li>
+                </ul>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="main-footer flex column justify-center align-center">
+        <div class="footer container flex column justify-center align-center">
+            <div class="logo"></div>
+            <small>all rights reserved 2020</small>
+        </div>
+    </footer>
+
+    <script src="js/memgen-utils.js"></script>
+    <script src="js/memgen-storage-service.js"></script>
+    <script src="js/memgen-service.js"></script>
+    <script src="js/memgen-main.js"></script>
 </body>
+
 </html>
