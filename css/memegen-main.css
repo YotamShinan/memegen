@@ -58,12 +58,16 @@ section ul {
 
 table {
     max-width: 100%;
-    background-color: blue;
     align-self: center;
 }
 
 tbody {
     max-width: 100%;
+}
+
+tr {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 td img {
@@ -79,18 +83,26 @@ td img {
 }
 
 .logo {
-    background-image: url("C:/Users/Yotam/Dropbox/CaMar20-ExcerciseSubmission/Yotam Shinan/Day29-Sprint2/memegen/img/logo/LOGO.png");
+    background-image: url("../img/logo/LOGO.png");
     background-size: contain;
     background-position: center;
     width: 420px;
     height: 130px;
     background-repeat: no-repeat;
+    
 }
 
 .img-page {
     height: 600px;
     background-color: #e4e4e4;
-    justify-self: center;
+}
+
+.gallery {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 600px;
+    width: 100%;
+    margin:0 auto;
 }
 
 .img-nav {
@@ -132,6 +144,7 @@ td img {
     border-radius: 12px;
     background-color: var(--white);
     font-size: 40px;
+    font-family: Impact;
 }
 
 /*--------------------------- Display-helper -------------------------------*/
@@ -173,3 +186,47 @@ td img {
     margin: 0;
     padding: 0;
 }
+
+/*---------------------------- Media Queries ----------------------------------*/
+
+@media (max-width: 1030px) {
+
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -15,24 +15,24 @@
             <div class="logo"></div>
 
             <ul class="upper-nav flex space-between clean-list">
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">Memes</a></li>
-                <li><a href="#">About</a></li>
+                <li><a href="#/" onclick="toggleGalleryMainPages()">Gallery</a></li>
+                <li><a href="#/">Memes</a></li>
+                <li><a href="#/">About</a></li>
             </ul>
         </div>
     </header>
 
     <section class="img-page">
 
-        <div class="gallery flex column align-center">
+        <div class="gallery container flex column align-center">
 
             <div class="img-nav flex justify-center align-center space-between">
                 <input type="text" class="search-img">
                 <div class="word-tags"></div>
             </div>
 
-            <table class="img-table">
-                <tbody class="tbody flex wrap">
+            <table class="img-table container">
+                <tbody class="tbody container flex wrap">
                 </tbody>
             </table>
 
@@ -48,32 +48,38 @@
         <section class="main-controller flex align-center">
             <div class="control-box flex column align-center space-between">
 
-                <input type="text" class="meme-text" name="meme-text" oninput="onTypeText()">
+                <div class="input1"><input type="text" class="meme-text" name="meme-text" id="0" oninput="onTypeText(this)" onfocus="onFocusChange(this)"></div> 
+                <div class="input2"></div>
+                
 
                 <ul class="input-control flex align-center justify-center space-between clean-list">
-                    <li><a href="#">🠭🠯</a></li>
-                    <li><a href="#">➕</a></li>
-                    <li><a href="#">🗑</a></li>
+                    <li><a href="#/" onclick="onFocusSwap()">Switch Lines</a></li>
+                    <li><a href="#/" onclick="onSetLineHigher()">🠭</a></li>
+                    <li><a href="#/" onclick="onSetLineLower()">🠯</a></li>
+                    <li><a href="#/" onclick="onAddTextInput()">➕</a></li>
+                    <li><a href="#/" onclick="onDeleteTextLine()">🗑</a></li>
                 </ul>
 
                 <ul class="text-control flex align-center wrap justify-center space-between clean-list">
-                    <li><a href="#">🗚</a></li>
-                    <li><a href="#">🗛</a></li>
-                    <li><a href="#">LTR</a></li>
-                    <li><a href="#">CENTER</a></li>
-                    <li><a href="#">RTL</a></li>
+                    <li><a href="#/" onclick="onIncreaseFontSize()">🗚</a></li>
+                    <li><a href="#/" onclick="onDecreaseFontSize()">🗛</a></li>
+                    <li><a href="#/" onclick="onSetDirectionRTL()">RTL</a></li>
+                    <li><a href="#/" onclick="onSetDirectionCenter()">CENTER</a></li>
+                    <li><a href="#/" onclick="onSetDirectionLTR()">LTR</a></li>
                 </ul>
 
                 <ul class="text-style flex align-center space-between clean-list">
-                    <li><a href="#"><input type="color">stroke color</a></li>
-                    <li><a href="#"><input type="color">font color</a></li>
-                    <li><a href="#"><select name="choose-font" id="choose-font"></select></a></li>
+                    <li><a href="#/"><input type="color" onchange="OnStrokeColorSelect(this)" value="black" id="stroke-color">stroke color</a></li>
+                    <li><a href="#/"><input type="color" onchange="OnFontColorSelect(this)" value="white" id="font-color">font color</a></li>
+                    <li><a href="#/"><select name="choose-font" id="choose-font"></select></a></li>
                 </ul>
 
-                <ul class="save-share-control flex space-between clean-list">
-                    <li><a href="#">share</a></li>
-                    <li><a href="#">save</a></li>
-                </ul>
+                <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <button class="btn" type="submit">Publish</button>
+                    <a href="#" class="btn" onclick="downloadImg(this)">Download as jpeg</a>
+                    <div class="share-container"></div>
+                  </form>
             </div>
 
         </section>

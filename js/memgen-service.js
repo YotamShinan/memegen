@@ -19,37 +19,55 @@ var gImgs = [
 var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
+    isSecondLineCreated: false,
     lines: [
         {
             text: '',
-            size: 80,
-            align: 'left',
+            size: 50,
+            align: 'center',
             color: 'white',
-            stroke: 'black'
-        }
+            stroke: 'black',
+            cordsY: 600,
+        },
+        {
+            text: '',
+            size: 50,
+            align: 'center',
+            color: 'white',
+            stroke: 'black',
+            cordsY: 990,
+        },
     ]
 }
 
-// ---------------------- Gallery control -------------------------//
+function resetGMeme() {
+    gMeme = {
+        selectedImgId: 0,
+        selectedLineIdx: 0,
+        isSecondLineCreated: false,
+        lines: [
+            {
+                text: '',
+                size: 50,
+                align: 'center',
+                color: 'white',
+                stroke: 'black',
+                cordsY: 600,
+            },
+            {
+                text: '',
+                size: 50,
+                align: 'center',
+                color: 'white',
+                stroke: 'black',
+                cordsY: 990,
+            },
+        ]
+    }
+}
 
-// function createImages() {
-//     var imgs = [];
-//     for (var i = 0; i < 19; i++) {
-//         const img = _createImage(i);
-//         imgs.push(img);
-//     }
-//     gImgs = imgs;
-// }
 
-// function _createImage(id) {
-//     return {
-//         id: id,
-//         url: `img/memes/${id}.jpg`,
-//         keywords: []
-//     }
-// }
-
-// ---------------------- gMeme setters ------------------------ //
+// ---------------------- gMeme setters -------------------------- //
 
 function setCurrentMemeImg(imgId) {
     gMeme.selectedImgId = imgId;
@@ -57,7 +75,40 @@ function setCurrentMemeImg(imgId) {
 }
 
 function setMemeText(txt) {
-    gMeme.lines[0].text = txt;
+    gMeme.lines[gMeme.selectedLineIdx].text = txt;
+}
+
+function setMemeFontSize(indDec) {
+    (indDec === 'inc') ? gMeme.lines[gMeme.selectedLineIdx].size += 10 : gMeme.lines[gMeme.selectedLineIdx].size -= 10;
+}
+
+function setLineCords(upOrDown) {
+    const currLine = gMeme.selectedLineIdx;
+    var temp = gMeme.lines[currLine].cordsY;
+    (upOrDown === 'up') ? temp -= 20 : temp += 20;
+    if ((temp <= 1060) && (temp >= 520)) {
+        gMeme.lines[currLine].cordsY = temp;
+    } 
+}
+
+function setSecondLineCreated() {
+    gMeme.isSecondLineCreated = true;
+}
+
+function setLineDirection(direction) {
+    gMeme.lines[gMeme.selectedLineIdx].align = direction;
+} 
+
+function setSelectedLine(lineIdx) {
+    gMeme.selectedLineIdx = +lineIdx;
+}
+
+function setFontColor(val) {
+    gMeme.lines[gMeme.selectedLineIdx].color = val;
+}
+
+function setStrokeColor(val) {
+    gMeme.lines[gMeme.selectedLineIdx].stroke = val;
 }
 
 // ---------------------- gMeme getters ------------------------ //
@@ -66,16 +117,40 @@ function getCrurentImgUrl(imgId) {
     return gElCurrentImgUrl = gImgs.find(({ id }) => id === imgId).url;
 }
 
-function getMemeText() {
-    return gMeme.lines[0].text;
-}
-
-function getFontSize() {
-    return gMeme.lines[0].size;
-}
-
 function getImgs() {
     return gImgs;
+}
+
+function getSelectedLine() {
+    return gMeme.selectedLineIdx;
+}
+
+function wasSecondLineCreated() {
+    return gMeme.isSecondLineCreated;
+}
+
+function getMemeText(lineIdx) {
+    return gMeme.lines[lineIdx].text;
+}
+
+function getFontSize(lineIdx) {
+    return gMeme.lines[lineIdx].size;
+}
+
+function getLineCords(lineIdx) {
+    return gMeme.lines[lineIdx].cordsY;
+}
+
+function getLineDirection(lineIdx) {
+    return gMeme.lines[lineIdx].align;
+}
+
+function getFontColor(lineIdx) {
+    return gMeme.lines[lineIdx].color;
+}
+
+function getStrokeColor(lineIdx) {
+    return gMeme.lines[lineIdx].stroke;
 }
 
 
