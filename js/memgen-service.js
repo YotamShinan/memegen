@@ -93,14 +93,15 @@ function setLineCords(upOrDown) {
 
 function setSecondLineCreated() {
     gMeme.isSecondLineCreated = true;
+    setSelectedLine();
 }
 
 function setLineDirection(direction) {
     gMeme.lines[gMeme.selectedLineIdx].align = direction;
 } 
 
-function setSelectedLine(lineIdx) {
-    gMeme.selectedLineIdx = +lineIdx;
+function setSelectedLine() {
+    (gMeme.selectedLineIdx === 0) ? gMeme.selectedLineIdx = 1 : gMeme.selectedLineIdx = 0;
 }
 
 function setFontColor(val) {
@@ -121,6 +122,10 @@ function getImgs() {
     return gImgs;
 }
 
+function getLines() {
+    return gMeme.lines;
+}
+
 function getSelectedLine() {
     return gMeme.selectedLineIdx;
 }
@@ -133,25 +138,6 @@ function getMemeText(lineIdx) {
     return gMeme.lines[lineIdx].text;
 }
 
-function getFontSize(lineIdx) {
-    return gMeme.lines[lineIdx].size;
-}
-
-function getLineCords(lineIdx) {
-    return gMeme.lines[lineIdx].cordsY;
-}
-
-function getLineDirection(lineIdx) {
-    return gMeme.lines[lineIdx].align;
-}
-
-function getFontColor(lineIdx) {
-    return gMeme.lines[lineIdx].color;
-}
-
-function getStrokeColor(lineIdx) {
-    return gMeme.lines[lineIdx].stroke;
-}
 
 
 

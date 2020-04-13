@@ -12,15 +12,14 @@ function init() {
     gCtx = gCanvas.getContext('2d');
     resetGMeme();
     renderFullGallery();
-    document.getElementById('0').value = '';
-    document.getElementById('1').value = '';
+    getElInput().value = '';
     document.getElementById('stroke-color').value = 'black';
     document.getElementById('font-color').value = 'white';
 
 }
 
-function getCurrentElInput() {
-    return document.getElementById(getSelectedLine().toString());
+function getElInput() {
+    return document.getElementById('0');
 }
 
 
@@ -62,92 +61,96 @@ function loadImg() {
 
 // ------------------------ DOM text input handleres --------------------------- //
 
-function onTypeText(elInput) {
-    setSelectedLine(elInput.id);
-    const txt = elInput.value;
-    setMemeText(txt);
+function renderCanvas() {
     gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height);
     textToCanvas();
 }
 
+function onTypeText(elInput) {
+    const txt = elInput.value;
+    setMemeText(txt);
+    renderCanvas();
+}
+
 function textToCanvas() {
-    for (var i = 0; i < 2; i++) {
+    const lines = getLines()
+    lines.forEach(line => {
+
         gCtx.lineWidth = '3';
-        gCtx.textAlign = getLineDirection(i);
-        gCtx.fillStyle = getFontColor(i);
-        gCtx.strokeStyle = getStrokeColor(i);
-        gCtx.font = `bold ${getFontSize(i)}px Impact`;
-        gCtx.fillText(getMemeText(i), gCanvas.width / 2, getLineCords(i) - 470);
-        gCtx.strokeText(getMemeText(i), gCanvas.width / 2, getLineCords(i) - 470);
-    }
+        gCtx.textAlign = line.align;
+        gCtx.fillStyle = line.color;
+        gCtx.strokeStyle = line.stroke;
+        gCtx.font = `bold ${line.size}px Impact`;
+        gCtx.fillText(line.text, gCanvas.width / 2, line.cordsY - 470);
+        gCtx.strokeText(line.text, gCanvas.width / 2, line.cordsY - 470);
+
+    })
 }
 
 function onAddTextInput() {
     if (!wasSecondLineCreated()) {
         setSecondLineCreated();
-        const srtHtml = `<input type="text" class="meme-text" name="meme-text" id="1" oninput="onTypeText(this)" onfocus="onFocusChange(this)">`;
-        const secondInput = document.querySelector('.input2');
-        secondInput.innerHTML = srtHtml;
+        getElInput().value = '';
     }
-}
-
-function onFocusChange(elInput) {
-    setSelectedLine(elInput.id);
 }
 
 function onFocusSwap() {
     if (wasSecondLineCreated()) {
-        const input1 = document.getElementById('0');
-        const input2 = document.getElementById('1');
-        (getSelectedLine() === 0) ? input2.focus() : input1.focus();
+        setSelectedLine();
+        getElInput().value = getMemeText(getSelectedLine());
     }
 }
 
 function onDeleteTextLine() {
     setMemeText('', getSelectedLine());
-    getCurrentElInput().value = '';
-    onTypeText(getCurrentElInput());
+    getElInput().value = '';
+    renderCanvas();
 }
 
 // ------------------------ DOM text size, color, cords and direction handleres --------------------------- //
 
 function onIncreaseFontSize() {
     setMemeFontSize('inc');
-    onTypeText(getCurrentElInput());
+    renderCanvas();
 }
 
 function onDecreaseFontSize() {
     setMemeFontSize('dec');
-    onTypeText(getCurrentElInput());
+    renderCanvas();
 }
 
 function onSetLineHigher() {
     setLineCords('up');
-    onTypeText(getCurrentElInput());
+    renderCanvas();
 }
 
 function onSetLineLower() {
     setLineCords('down');
-    onTypeText(getCurrentElInput());
+    renderCanvas();
 }
 
 function onSetDirectionLTR() {
     setLineDirection('left')
-    onTypeText(getCurrentElInput());
+    renderCanvas();
 }
 function onSetDirectionRTL() {
     setLineDirection('right')
-    onTypeText(getCurrentElInput());
+    renderCanvas();
 }
 function onSetDirectionCenter() {
     setLineDirection('center')
-    onTypeText(getCurrentElInput());
+    renderCanvas();
 }
 
 function OnStrokeColorSelect(el) {
     setStrokeColor(el.value);
+    renderCanvas();
 }
 
 function OnFontColorSelect(el) {
     setFontColor(el.value);
+    renderCanvas();
 }
+
+
+

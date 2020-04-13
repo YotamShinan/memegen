@@ -1,5 +1,9 @@
 /*---------------------------------------- Font Family ----------------------------------------*/
 
+ @font-face {
+    font-family: robotomono;
+    src: url(/css/fonts/Roboto_Mono/RobotoMono-Regular.ttf) 
+} 
 
 
 /*------------------------------------------ LAYOUT --------------------------------------*/
@@ -26,6 +30,8 @@ li a {
     align-items: center;
 }
 
+
+
 body {
     margin: 0;
     display: flex;
@@ -47,7 +53,7 @@ main {
 }
 
 footer {
-    width: 99vw;
+    width: 99vw; 
     background-color: #ff7f00;
     align-self: center;
 }
@@ -92,6 +98,18 @@ td img {
     
 }
 
+.header ul li a {
+    text-decoration: none;
+    width: 100%;
+    font-family: robotomono;
+    color: white;
+    font-size: 1.4em;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .img-page {
     height: 600px;
     background-color: #e4e4e4;
@@ -117,7 +135,7 @@ td img {
 }
 
 .upper-nav {
-    width: 50%;
+    width: 30%;
 }
 
 .main-controller {
